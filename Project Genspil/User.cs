@@ -1,13 +1,8 @@
 namespace Project_Genspil
 {
-    internal class User
+    internal class User(string name)
     {
-        public string Name { get; set; }
-
-        public User(string name)
-        {
-            Name = name;
-        }
+        private string Name { get; set; } = name;
 
         public override string ToString()
         {

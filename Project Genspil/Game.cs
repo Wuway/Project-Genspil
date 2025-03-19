@@ -1,25 +1,19 @@
 namespace Project_Genspil
 {
-    internal class Game
+    internal class Game(string title, string edition, string genre, string condition, double price)
     {
-        public string Title { get; set; }
-        public string Edition { get; set; }
-        public string Genre { get; set; }
-        public string Condition { get; set; }
-        public double Price { get; set; }
+        private string Title { get; set; } = title;
+        private string Edition { get; set; } = edition;
+        private string Genre { get; set; } = genre;
+        private string Condition { get; set; } = condition;
+
+        private double Price { get; set; } = price;
         /*public int Players { private get; set; }
         public int MinAge { private get; set; }*/
 
-        public Game(string title, string edition, string genre, string condition, double price) /*int players, int minAge*/
-        {
-            Title = title;
-            Edition = edition;
-            Genre = genre;
-            Condition = condition;
-            Price = price;
-            /*Players = players;
+        /*int players, int minAge*/
+        /*Players = players;
             MinAge = minAge;*/
-        }
 
         public override string ToString()
         {

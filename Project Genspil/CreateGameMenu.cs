@@ -4,12 +4,10 @@ namespace Project_Genspil
 {
     public class CreateGameMenu
     {
-        private List<string> _menuOptions = new List<string>
-        {
-            "Tilbage", "Tilføj nyt spil", "Se eksisterende spil", "Rediger spil", "Slet spil", "Afslut"
-        };
+        private readonly List<string> _menuOptions =
+            ["Tilbage", "Tilføj nyt spil", "Se eksisterende spil", "Rediger spil", "Slet spil", "Afslut"];
 
-        private List<string> _gameLibrary = new List<string>(); // Liste over spil
+        private readonly List<string> _gameLibrary = new List<string>(); // Liste over spil
 
         public void Show()
         {
@@ -24,10 +22,9 @@ namespace Project_Genspil
 
                 for (int i = 0; i < _menuOptions.Count; i++)
                 {
-                    if (i == option)
-                        Console.WriteLine($"\n✅ \u001b[32m{_menuOptions[i]}\u001b[0m");
-                    else
-                        Console.WriteLine($"   {_menuOptions[i]}");
+                    Console.WriteLine(i == option
+                        ? $"\n✅ \u001b[32m{_menuOptions[i]}\u001b[0m"
+                        : $"   {_menuOptions[i]}");
                 }
 
                 var key = Console.ReadKey(true).Key;

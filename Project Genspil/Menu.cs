@@ -4,10 +4,8 @@ namespace Project_Genspil
 {
     internal class Menu
     {
-        private List<string> _menuOptions = new List<string>
-        {
-            "Opret Spil", "Søg Spil", "Udskriv Lagerliste", "Håndter Forespørgsler", "Administrer Kunder", "Afslut"
-        };
+        private readonly List<string> _menuOptions =
+            ["Opret Spil", "Søg Spil", "Udskriv Lagerliste", "Håndter Forespørgsler", "Administrer Kunder", "Afslut"];
 
         public void Show()
         {
@@ -23,10 +21,9 @@ namespace Project_Genspil
                 // Udskriv menuen med farvet markør ved den valgte mulighed
                 for (int i = 0; i < _menuOptions.Count; i++)
                 {
-                    if (i == option)
-                        Console.WriteLine($"\n✅ \u001b[32m{_menuOptions[i]}\u001b[0m");
-                    else
-                        Console.WriteLine($"   {_menuOptions[i]}");
+                    Console.WriteLine(i == option
+                        ? $"\n✅ \u001b[32m{_menuOptions[i]}\u001b[0m"
+                        : $"   {_menuOptions[i]}");
                 }
 
                 var key = Console.ReadKey(true).Key; // Læs tastetryk uden at vise det i konsollen
@@ -90,13 +87,14 @@ namespace Project_Genspil
 
         private void SøgSpil()
         {
-            var searchMenu = new SearchGameMenu(new List<string> 
+            var list = new List<string>
             {
                 "Spil1",
                 "Spil2",
                 "Spil3",
                 "Spil4"
-            });
+            };
+            var searchMenu = new SearchGameMenu(list);
 
             searchMenu.Show();
         }
@@ -104,25 +102,25 @@ namespace Project_Genspil
 
         private void UdskrivLagerliste()
         {
-            var printInventoryMenu = new PrintInventoryMenu(new List<string> 
-            {
+            var printInventoryMenu = new PrintInventoryMenu([
                 "Spil1",
                 "Spil2",
                 "Spil3",
                 "Spil4"
-            });
+            ]);
 
             printInventoryMenu.Show();
         }
 
         private void HåndterForespørgsler()
         {
-            var requestMenu = new HandleRequestsMenu(new List<string> 
+            var list = new List<string>
             {
                 "Reservation af 'Catan' fra Mads Andersen",
                 "Forespørgsel om pris på 'Carcassonne' fra Louise Jensen",
                 "Købsanmodning på 'Ticket to Ride' fra Tariq Hassan"
-            });
+            };
+            var requestMenu = new HandleRequestsMenu(list);
 
             requestMenu.Show();
         }
@@ -130,12 +128,11 @@ namespace Project_Genspil
 
         private void AdministrerKunder()
         {
-            var manageCustomersMenu = new ManageCustomersMenu(new List<string> 
-            {
+            var manageCustomersMenu = new ManageCustomersMenu([
                 "Mads Andersen",
                 "Louise Jensen",
                 "Tariq Hassan"
-            });
+            ]);
 
             manageCustomersMenu.Show();
         }

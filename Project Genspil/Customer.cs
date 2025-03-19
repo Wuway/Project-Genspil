@@ -1,17 +1,10 @@
 namespace Project_Genspil
 {
-    internal class Customer
+    internal class Customer(string name, string address, string phoneNumber)
     {
-        public string Name { get; set; }
-        public string Address { get; set; }
-        public string PhoneNumber { get; set; }
-
-        public Customer(string name, string address, string phoneNumber)
-        {
-            Name = name;
-            Address = address;
-            PhoneNumber = phoneNumber;
-        }
+        private string Name { get; set; } = name;
+        private string Address { get; set; } = address;
+        private string PhoneNumber { get; set; } = phoneNumber;
 
         public override string ToString()
         {

@@ -1,15 +1,8 @@
-
-
 namespace Project_Genspil
 {
-    public class SearchGameMenu
+    public class SearchGameMenu(List<string> gameLibrary)
     {
-        private List<string> _gameLibrary; // Reference til den fælles spildatabase
-
-        public SearchGameMenu(List<string> gameLibrary)
-        {
-            this._gameLibrary = gameLibrary;
-        }
+        private readonly List<string> _gameLibrary = gameLibrary; // Reference til den fælles spildatabase
 
         public void Show()
         {
@@ -17,7 +10,7 @@ namespace Project_Genspil
             Console.WriteLine("\u001b[33m--- Søg efter et spil ---\u001b[0m");
             Console.Write("\nIndtast navnet på spillet du vil søge efter: ");
             
-            string searchQuery = Console.ReadLine()?.Trim();
+            string? searchQuery = Console.ReadLine()?.Trim();
 
             if (string.IsNullOrWhiteSpace(searchQuery))
             {
