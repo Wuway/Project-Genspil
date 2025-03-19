@@ -7,18 +7,18 @@ namespace Project_Genspil
         public string Genre { get; set; }
         public string Condition { get; set; }
         public double Price { get; set; }
-        public int Players { get; set; }
-        public int MinAge { get; set; }
+        /*public int Players { private get; set; }
+        public int MinAge { private get; set; }*/
 
-        public Game(string title, string edition, string genre, string condition, double price, int players, int minAge)
+        public Game(string title, string edition, string genre, string condition, double price) /*int players, int minAge*/
         {
             Title = title;
             Edition = edition;
             Genre = genre;
             Condition = condition;
             Price = price;
-            Players = players;
-            MinAge = minAge;
+            /*Players = players;
+            MinAge = minAge;*/
         }
 
         public override string ToString()

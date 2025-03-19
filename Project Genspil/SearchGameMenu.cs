@@ -1,15 +1,14 @@
-using System;
-using System.Collections.Generic;
+
 
 namespace Project_Genspil
 {
     public class SearchGameMenu
     {
-        private List<string> gameLibrary; // Reference til den fælles spildatabase
+        private List<string> _gameLibrary; // Reference til den fælles spildatabase
 
         public SearchGameMenu(List<string> gameLibrary)
         {
-            this.gameLibrary = gameLibrary;
+            this._gameLibrary = gameLibrary;
         }
 
         public void Show()
@@ -26,7 +25,7 @@ namespace Project_Genspil
             }
             else
             {
-                List<string> searchResults = gameLibrary.FindAll(spil => spil.IndexOf(searchQuery, StringComparison.OrdinalIgnoreCase) >= 0);
+                List<string> searchResults = _gameLibrary.FindAll(spil => spil.IndexOf(searchQuery, StringComparison.OrdinalIgnoreCase) >= 0);
 
                 if (searchResults.Count > 0)
                 {

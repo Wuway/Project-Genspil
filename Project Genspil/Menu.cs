@@ -1,11 +1,10 @@
-using System;
-using System.Collections.Generic;
+
 
 namespace Project_Genspil
 {
     internal class Menu
     {
-        private List<string> menuOptions = new List<string>
+        private List<string> _menuOptions = new List<string>
         {
             "Opret Spil", "Søg Spil", "Udskriv Lagerliste", "Håndter Forespørgsler", "Administrer Kunder", "Afslut"
         };
@@ -22,12 +21,12 @@ namespace Project_Genspil
                 Console.WriteLine("\u001b[33m--- System Genspil Menu ---\u001b[0m");
 
                 // Udskriv menuen med farvet markør ved den valgte mulighed
-                for (int i = 0; i < menuOptions.Count; i++)
+                for (int i = 0; i < _menuOptions.Count; i++)
                 {
                     if (i == option)
-                        Console.WriteLine($"\n✅ \u001b[32m{menuOptions[i]}\u001b[0m");
+                        Console.WriteLine($"\n✅ \u001b[32m{_menuOptions[i]}\u001b[0m");
                     else
-                        Console.WriteLine($"   {menuOptions[i]}");
+                        Console.WriteLine($"   {_menuOptions[i]}");
                 }
 
                 var key = Console.ReadKey(true).Key; // Læs tastetryk uden at vise det i konsollen
@@ -35,10 +34,10 @@ namespace Project_Genspil
                 switch (key)
                 {
                     case ConsoleKey.DownArrow:
-                        option = (option + 1) % menuOptions.Count; // Gå ned i menuen (loop tilbage til toppen)
+                        option = (option + 1) % _menuOptions.Count; // Gå ned i menuen (loop tilbage til toppen)
                         break;
                     case ConsoleKey.UpArrow:
-                        option = (option - 1 + menuOptions.Count) % menuOptions.Count; // Gå op i menuen (loop til bunden)
+                        option = (option - 1 + _menuOptions.Count) % _menuOptions.Count; // Gå op i menuen (loop til bunden)
                         break;
                     case ConsoleKey.Enter:
                         HandleSelection(option); // Kald den valgte funktion
@@ -53,7 +52,7 @@ namespace Project_Genspil
         private void HandleSelection(int option)
         {
             Console.Clear();
-            Console.WriteLine($"Du valgte: {menuOptions[option]}\n");
+            Console.WriteLine($"Du valgte: {_menuOptions[option]}\n");
 
             switch (option)
             {

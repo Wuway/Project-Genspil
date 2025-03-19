@@ -1,16 +1,15 @@
-using System;
-using System.Collections.Generic;
+
 
 namespace Project_Genspil
 {
     public class CreateGameMenu
     {
-        private List<string> menuOptions = new List<string>
+        private List<string> _menuOptions = new List<string>
         {
             "Tilbage", "Tilføj nyt spil", "Se eksisterende spil", "Rediger spil", "Slet spil", "Afslut"
         };
 
-        private List<string> gameLibrary = new List<string>(); // Liste over spil
+        private List<string> _gameLibrary = new List<string>(); // Liste over spil
 
         public void Show()
         {
@@ -23,12 +22,12 @@ namespace Project_Genspil
                 Console.Clear();
                 Console.WriteLine("\u001b[33m--- Opret Spil Menu ---\u001b[0m");
 
-                for (int i = 0; i < menuOptions.Count; i++)
+                for (int i = 0; i < _menuOptions.Count; i++)
                 {
                     if (i == option)
-                        Console.WriteLine($"\n✅ \u001b[32m{menuOptions[i]}\u001b[0m");
+                        Console.WriteLine($"\n✅ \u001b[32m{_menuOptions[i]}\u001b[0m");
                     else
-                        Console.WriteLine($"   {menuOptions[i]}");
+                        Console.WriteLine($"   {_menuOptions[i]}");
                 }
 
                 var key = Console.ReadKey(true).Key;
@@ -36,10 +35,10 @@ namespace Project_Genspil
                 switch (key)
                 {
                     case ConsoleKey.DownArrow:
-                        option = (option + 1) % menuOptions.Count;
+                        option = (option + 1) % _menuOptions.Count;
                         break;
                     case ConsoleKey.UpArrow:
-                        option = (option - 1 + menuOptions.Count) % menuOptions.Count;
+                        option = (option - 1 + _menuOptions.Count) % _menuOptions.Count;
                         break;
                     case ConsoleKey.Enter:
                         HandleSelection(option);
@@ -54,7 +53,7 @@ namespace Project_Genspil
         private void HandleSelection(int option)
         {
             Console.Clear();
-            Console.WriteLine($"Du valgte: {menuOptions[option]}\n");
+            Console.WriteLine($"Du valgte: {_menuOptions[option]}\n");
 
             switch (option)
             {
@@ -92,11 +91,11 @@ namespace Project_Genspil
         private void TilføjNytSpil()
         {
             Console.Write("Indtast navnet på det nye spil: ");
-            string nytSpil = Console.ReadLine();
+            string nytSpil = Console.ReadLine() ?? string.Empty;
 
             if (!string.IsNullOrWhiteSpace(nytSpil))
             {
-                gameLibrary.Add(nytSpil);
+                _gameLibrary.Add(nytSpil);
                 Console.WriteLine($"Spillet '{nytSpil}' er blevet tilføjet!");
             }
             else
@@ -109,13 +108,13 @@ namespace Project_Genspil
         {
             Console.WriteLine("Eksisterende spil i systemet:");
 
-            if (gameLibrary.Count == 0)
+            if (_gameLibrary.Count == 0)
             {
                 Console.WriteLine("Ingen spil er registreret endnu.");
             }
             else
             {
-                foreach (var spil in gameLibrary)
+                foreach (var spil in _gameLibrary)
                 {
                     Console.WriteLine($"- {spil}");
                 }
@@ -124,26 +123,27 @@ namespace Project_Genspil
 
         private void RedigerSpil()
         {
-            if (gameLibrary.Count == 0)
+            if (_gameLibrary.Count == 0)
             {
                 Console.WriteLine("Der er ingen spil at redigere.");
                 return;
             }
 
             Console.WriteLine("Vælg et spil at redigere:");
-            for (int i = 0; i < gameLibrary.Count; i++)
+            for (int i = 0; i < _gameLibrary.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {gameLibrary[i]}");
+                Console.WriteLine($"{i + 1}. {_gameLibrary[i]}");
             }
 
             Console.Write("Indtast nummeret på spillet du vil redigere: ");
-            if (int.TryParse(Console.ReadLine(), out int index) && index > 0 && index <= gameLibrary.Count)
+            if (int.TryParse(Console.ReadLine(), out int index) && index > 0 && index <= _gameLibrary.Count)
             {
                 Console.Write("Indtast det nye navn for spillet: ");
-                string nytNavn = Console.ReadLine();
+                string? nytNavn = Console.ReadLine();
+
                 if (!string.IsNullOrWhiteSpace(nytNavn))
                 {
-                    gameLibrary[index - 1] = nytNavn;
+                    _gameLibrary[index - 1] = nytNavn;
                     Console.WriteLine("Spillet er blevet opdateret.");
                 }
                 else
@@ -159,23 +159,23 @@ namespace Project_Genspil
 
         private void SletSpil()
         {
-            if (gameLibrary.Count == 0)
+            if (_gameLibrary.Count == 0)
             {
                 Console.WriteLine("Der er ingen spil at slette.");
                 return;
             }
 
             Console.WriteLine("Vælg et spil at slette:");
-            for (int i = 0; i < gameLibrary.Count; i++)
+            for (int i = 0; i < _gameLibrary.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {gameLibrary[i]}");
+                Console.WriteLine($"{i + 1}. {_gameLibrary[i]}");
             }
 
             Console.Write("Indtast nummeret på spillet du vil slette: ");
-            if (int.TryParse(Console.ReadLine(), out int index) && index > 0 && index <= gameLibrary.Count)
+            if (int.TryParse(Console.ReadLine(), out int index) && index > 0 && index <= _gameLibrary.Count)
             {
-                Console.WriteLine($"Spillet '{gameLibrary[index - 1]}' er blevet slettet.");
-                gameLibrary.RemoveAt(index - 1);
+                Console.WriteLine($"Spillet '{_gameLibrary[index - 1]}' er blevet slettet.");
+                _gameLibrary.RemoveAt(index - 1);
             }
             else
             {
